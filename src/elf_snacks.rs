@@ -1,4 +1,4 @@
-use std::fs;
+use crate::import_content;
 
 fn get_elf_calories(contents: String) -> Vec<i32>{
     let split = contents.split('\n');
@@ -17,16 +17,10 @@ fn get_elf_calories(contents: String) -> Vec<i32>{
 }
 
 pub fn print_elf_snacks() {
-    let file_path = "inputs/snacks.txt";
-    println!("In file {}", file_path);
-    let contents = fs::read_to_string(file_path)
-        .expect("Should have been able to read the file");
+    let contents = import_content::import("inputs/snacks.txt");
     let mut elf_vec = get_elf_calories(contents);
     elf_vec.sort();
     elf_vec.reverse();
-    // for elf in elf_vec{
-    //     println!("{}", elf)
-    // }
     println!("{}, {}, {}", elf_vec[0], elf_vec[1], elf_vec[2]);
     let sum = elf_vec[0] + elf_vec[1] + elf_vec[2];
     println!("{}", sum);
