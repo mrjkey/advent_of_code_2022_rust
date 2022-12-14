@@ -73,8 +73,9 @@ fn clearing_pair_overlap_completely(s: &str) -> bool{
 }
 
 fn get_clearing_min_max(s: &str) -> (i32, i32){
-    let range_split = s.split('-').collect::<Vec<&str>>();
-    let min: i32 = FromStr::from_str(range_split[0]).unwrap();
+    let string = s.trim();
+    let range_split = string.split('-').collect::<Vec<&str>>();
+    let min: i32 = FromStr::from_str(&range_split[0]).unwrap();
     let max: i32 = FromStr::from_str(range_split[1]).unwrap();
     return (min, max);
 }
