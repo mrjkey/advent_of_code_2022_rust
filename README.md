@@ -11,3 +11,6 @@ install rust
 
 # Day 3 - Sorting Items
 
+# Day 4 - clearing areas
+
+# Day 5 - Unloading stacks
