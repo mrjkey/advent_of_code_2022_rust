@@ -5,13 +5,17 @@
 // mod item_prio;
 
 // use std::str::FromStr;
-mod section_clearing;
+// mod section_clearing;
 
 mod import_content;
+mod telecom;
 
 fn main() {
     // elf_snacks::print_elf_snacks();
     // rps_strategy::strategy();
     // item_prio::item_priorities();
-    section_clearing::clear_sections();
+    // section_clearing::clear_sections();
+    telecom::communication();
 }
+
+
