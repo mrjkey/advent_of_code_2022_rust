@@ -25,7 +25,9 @@ func main() {
 	used_space := root.size
 	needed_unused_space := 30000000
 	minimum_deletion_size := used_space - (total_space - needed_unused_space)
-	fmt.Println(minimum_deletion_size)
+	deletion_size := get_deletion_directory_size(root, minimum_deletion_size)
+	res, _ := fmt.Printf("needed %d, got %d", minimum_deletion_size, deletion_size)
+	fmt.Println(res)
 }
 
 type Node struct {
@@ -142,6 +144,20 @@ func sum_directory_size(root *Node) int {
 	return size
 }
 
-// func get_deletion_directory_size(root *Node) int {
-
-// }
+func get_deletion_directory_size(root *Node, minimum_deletion_size int) int {
+	deletion_size := 70000000
+	for _, child := range root.children {
+		if !child.is_file {
+			child_deletion_size := get_deletion_directory_size(child, minimum_deletion_size)
+			if child_deletion_size >= minimum_deletion_size {
+				if child_deletion_size < deletion_size {
+					deletion_size = child_deletion_size
+				}
+			}
+		}
+	}
+	if deletion_size > root.size {
+		deletion_size = root.size
+	}
+	return deletion_size
+}
